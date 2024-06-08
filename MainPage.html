@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MainPage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>MOON Messager</title>
+</head>
+<body>
+    
+
+    <header class="header">
+        <div class="left_header">
+            <span class="material-symbols-outlined icon_burger" onclick="open_setings()">
+                menu
+            </span>
+            <span class="logo_text">M O O N</span>
+
+
+        </div>
+        <div class="right_header">
+            <span class="material-symbols-outlined icon_search">
+                search
+             </span>
+        </div>
+
+    </header>
+
+
+
+
+
+
+    <section class="chats_section">
+
+
+
+        <div class="chat_block" onclick="open_chat()">
+            <img src="https://forum.aapanel.com/assets/avatars/bmFrrCMUYma8Ue3N.png" class="profile_pic">
+            <div class="nameProfile_and_message">
+                <div class="nameProfile_and_time">
+                    <div class="nameProfile">
+                        Sam<div class="material-symbols-outlined status"></div>
+                    </div>
+                    <div class="time">
+                        00:00
+                    </div>
+                </div>
+                <div class="message">
+                    <div class="text_message">
+                        Yes!!!
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="chat_block" onclick="open_chat()">
+            <img src="https://sun1-14.userapi.com/s/v1/if2/oEw4YDd_KLnAx7b8ja8ZoQq_XwUFKw326udG6UCrweiWPEt--D7Whm-7BTA983jTP8cb2oFC0IoRKwJoAQGM9kAb.jpg?quality=95&crop=0,0,1080,1080&as=50x50,100x100,200x200,400x400&ava=1&u=5Pr_HNV5YaZkELa3WaPe7C28ie6_e9Rp_-Fm5EYdI7w&cs=100x100" class="profile_pic">
+            <div class="nameProfile_and_message">
+                <div class="nameProfile_and_time">
+                    <div class="nameProfile">
+                        John<div class="material-symbols-outlined status"></div>
+                    </div>
+                    <div class="time">
+                        10:00
+                    </div>
+                </div>
+                <div class="message">
+                    <div class="text_message">
+                        im going
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <section class="current_chat" id="current_chat">
+
+
+        <header class="header chat_header">
+            <div class="Name_and_Pic">
+                <img src="MainPage/TestProfilePic.png" class="profile_pic">
+                <div class="nameProfile_and_activity">
+                    Vlad
+                    <div class="activity">
+                        was at 00:00
+                    </div>
+                </div>
+            
+            </div>
+            <div class="material-symbols-outlined" onclick="close_chat()">arrow_back</div>
+        </header>
+
+
+
+
+
+        <section class="messages_block" id="messages_block">
+
+            <div class="message_from_interlocutor">
+                <div class="current_text_message">
+                    Hello, world! 0_0
+                </div>
+                <div class="time_message">
+                    00:00
+                </div>
+            </div>
+            
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+        <footer class="chat_keboard">
+            <input type="text" class="input_new_message" id="input_message" placeholder="Message...">
+            <span class="material-symbols-outlined send_message">send</span>
+        </footer>
+    </section>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
