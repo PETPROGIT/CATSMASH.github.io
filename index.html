@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <section class="into"></section>
     <div class="bodyIntro">
@@ -54,7 +55,9 @@
 
 
     <script>
-
+        let tgApp = window.Telegram.WebApp;
+        tgApp.expand();
+        
         setTimeout(() => {
             document.getElementById("mainsec").style.visibility = "visible";
         }, 4000);
