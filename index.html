@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(0, 0, 0);
+        }
+        .app_screen{
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(0, 0, 0);
+        }
+        .island_block{
+            width: 100vw;
+            height: 7vh;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+        }   
+        .island{
+            width: 125px;
+            height: 35px;
+            border-radius: 20px 20px;
+            background-color: rgb(0, 0, 0);
+            border: 2px solid rgb(255, 255, 255);
+            transition: all .15s linear;
+        }
+        .island.hit {
+            transform: scale(1.1);
+            border-color:rgb(255, 255, 255);
+        }
+
+
+        .ball_section{
+            background-color: rgba(255, 255, 255, 0);
+            width: 100vw;
+            height: 100vh;
+            height: 90px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .ball{
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 7vh;
+            left: 28.5vw;
+        }
+
+        .rocket_block {
+            margin-top: 80vh;
+            width: 100vw;
+            z-index: 10000000;
+            position: absolute;
+        }
+
+        .rocket {
+            z-index: 10000000;
+            -webkit-appearance: none;
+            width: 100vw;
+            height: 40px;
+            background: none;
+            outline: none;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: start;
+        }
+
+        /* Ползунок (WebKit) */
+        .rocket::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 30vw;
+            min-width: 80px;
+            max-width: 150px;
+            height: 25px;
+            border-radius: 22px 22px;
+            background-color: rgb(0, 0, 0);
+            border: 2px solid rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="app_screen">
+        <div class="island_block">
+            <div class="island" id="island"></div>
+        </div>
+        <div class="ball_section">
+            <div class="ball" id="ball"></div>
+        </div>
+        <div class="rocket_block">
+            <input type="range" min="0" max="100" value="50" class="rocket" id="rocket" oninput="f()">
+        </div>
+        <!--<div class="screen" id="screen" style="color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">0</div>-->
+    </div>
+    
+    <script>
+        const rocket = document.getElementById('rocket');
+        const ball = document.getElementById('ball').style;
+        const island = document.getElementById("island").classList;
+        //let screen = document.getElementById("screen");
+
+        // Отслеживание в реальном времени (при движении ползунка)
+        rocket.addEventListener('input', function() {
+            sreen.textContent = this.value;
+        });
+
+        let X = 46.5;
+        let Y = 84;
+
+        let dirHor = -1.5;
+        let dirVert = -1;
+        setInterval(() => {
+            ball.top = `${Y}vh`;
+            ball.left = `${X}vw`
+            X += dirHor;
+            Y += dirVert;
+            if (Y == 7 & X >= 33 && X <= 60 && dirVert < 0) {
+                island.add("hit");
+                setTimeout(() => {
+                    island.remove("hit");
+                }, 200);
+                dirVert *= -1;
+            }
+            if (Y >= 0 && Y <= 7 && ((X >= 66 && X <= 67.5) || (X >= 26 && X <= 28.5))) {
+                console.log("---", X)
+                island.add("hit");
+                setTimeout(() => {
+                    island.remove("hit");
+                }, 200);
+                dirHor *= -1;
+                dirVert *= -1;
+            }
+            
+            if (Y == 0 || Y == 84) {
+                dirVert *= -1;
+            }
+            if (X == 0 || X == 93) {
+                dirHor *= -1;
+            }
+        }, 20);
+
+
+
+
+    </script>
+</body>
+</html>
