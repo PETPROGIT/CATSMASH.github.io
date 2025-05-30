@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         *{
             margin: 0;
@@ -23,6 +26,18 @@
             height: 100vh;
             background-color: rgb(0, 0, 0);
         }
+        .score{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            color: white;
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 80px;
+            letter-spacing: 4px;
+        }
         .island_block{
             width: 100vw;
             height: 7vh;
@@ -35,7 +50,7 @@
             height: 35px;
             border-radius: 20px 20px;
             background-color: rgb(0, 0, 0);
-            border: 2px solid rgb(90, 90, 90);
+            border: 1px solid rgb(90, 90, 90);
             transition: all .15s linear;
         }
         .island.hit {
@@ -60,8 +75,8 @@
             background-color: white;
             border-radius: 50%;
             position: absolute;
-            top: 7vh;
-            left: 28.5vw;
+            top: 84vh;
+            left: 46.5vw;
         }
 
         .rocket_block {
@@ -98,6 +113,9 @@
 <body>
 
     <div class="app_screen">
+        <div class="score" id="score">
+            0
+        </div>
         <div class="island_block">
             <div class="island" id="island"></div>
         </div>
@@ -114,8 +132,8 @@
         const rocket = document.getElementById('rocket');
         const ball = document.getElementById('ball').style;
         const island = document.getElementById("island").classList;
-        //let screen = document.getElementById("screen");
-
+        const screen = document.getElementById("screen");
+        const score_display = document.getElementById("score"); 
         // Отслеживание в реальном времени (при движении ползунка)
         rocket.addEventListener('input', function() {
             sreen.textContent = this.value;
@@ -126,7 +144,8 @@
 
         let dirHor = -1.5;
         let dirVert = -1;
-        setInterval(() => {
+        let score = 16;
+        let game = setInterval(() => {
             ball.top = `${Y}vh`;
             ball.left = `${X}vw`
             X += dirHor;
@@ -137,23 +156,35 @@
                     island.remove("hit");
                 }, 200);
                 dirVert *= -1;
+                score++;
+                score_display.textContent = score;
             }
             if (Y >= 0 && Y <= 7 && ((X >= 66 && X <= 67.5) || (X >= 26 && X <= 28.5))) {
-                console.log("---", X)
                 island.add("hit");
                 setTimeout(() => {
                     island.remove("hit");
                 }, 200);
                 dirHor *= -1;
                 dirVert *= -1;
+                score++;
+                score_display.textContent = score;
             }
             
-            if (Y == 0 || Y == 84) {
+            if (Y == 0 || Y == 96) {
                 dirVert *= -1;
+                if (Y == 96) {
+                    clearInterval(game);
+                }
             }
             if (X == 0 || X == 93) {
                 dirHor *= -1;
             }
+            let leftRocket = parseInt(rocket.value) - 22;
+            let rightRocket = parseInt(rocket.value) + 22;
+            if (Y == 84 && X>=leftRocket && X<rightRocket && dirVert > 0) {
+                dirVert *= -1;
+            }
+            //screen.textContent = rightRocket-leftRocket;
         }, 20);
 
 
