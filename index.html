@@ -184,15 +184,13 @@
             if (X == 0 || X == 93) {
                 dirHor *= -1;
             }
-            let leftRocket = parseInt(rocket.value) - 22;
-            let rightRocket = parseInt(rocket.value) + 22;
-            if (Y == 84 && X>=leftRocket && X<rightRocket && dirVert > 0) {
+            let leftRocket = parseInt(rocket.value) - 23;
+            let rightRocket = parseInt(rocket.value) + 23;
+            if (Y >= 84 && Y <= 87 && X>=leftRocket && X<rightRocket && dirVert > 0) {
                 dirVert *= -1;
             }
             //screen.textContent = rightRocket-leftRocket;
-        }, 20);
-
-
+        }, 10);
 
 
     </script>
